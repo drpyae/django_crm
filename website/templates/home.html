@@ -1,1 +1,32 @@
-<h1> Hello World </h1>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class ="col-md-6 offset-md-3">
+{% if user.is_authenticated %}
+<head> Hello World </head>
+
+</head> Login </head>
+<form mehtod="POST" action= "{% url 'home' %}">
+    {% csrf_token %}
+    <form>
+        <div class="mb-3">
+          {% comment %} <label for="exampleInputEmail1" class="form-label">Email address</label> {% endcomment %}
+          <input type="text" class="form-control" , naem="user_name", placeholder = "User Name", required>
+         
+          {% comment %} <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> {% endcomment %}
+        </div>
+        <br/>
+        <div class="mb-3">
+          <input type="password" class="form-control", name="password", placeholder="Password", required>
+        </div>
+        <br/>
+        {% comment %} <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> {% endcomment %}
+        <button type="submit" class="btn btn-secondary">Login</button>
+      </form>
+</form>
+</div>
+{% endif %}
+{% endblock %}
