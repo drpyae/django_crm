@@ -5,21 +5,24 @@ from django.contrib import messages
 def home(request):
     # Check to see if loggin in
     if request.method == 'POST':
-        username = request.POST['user_name']
+        username = request.POST['username']
         password = request.POST['password']
         # Authenticate
-        user = authenticate(request, username =user_name, password = password)
+        user = authenticate(request, username =username, password = password)
         if user is not None:
             login(request, user)
-            message.success(request, "You have succesfully Logged In")
+            messages.success(request, "You have been succesfully Logged In")
             return redirect('home')
         else:
             messages.success(request, "There was an error logging in, please try again.")
+            return redirect('home')
     else:
         return render(request, 'home.html',{})
-            
-    return render(request, 'home.html',{})
-def login_user(request):
-    pass
+
 def logout_user(request):
-    pass
+    logout(request)
+    messages.success(request, "You have been logged out...") 
+    return redirect('home')
+
+def register_user(request):
+   return render(request, 'register.html',{}) 
